@@ -67,7 +67,7 @@ function showData() {
         h3Start + products[i].description + h3End +
         h3Start + products[i].barcode + h3End +                        
         imgStart + products[i].p_image + imgEnd +
-        buttonStart + deleteProduct(i) + buttonOnclickEnd + "Delete" + buttonEnd;
+        buttonStart + 'deleteProduct(' + i + ')' + buttonOnclickEnd + "Delete" + buttonEnd;
 
         productsDiv += divProduct;
     }
@@ -75,7 +75,16 @@ function showData() {
     document.getElementById("container").innerHTML = productsDiv;
 }
 
+
+function saveAfterDeletingItem()
+{
+    localStorage.clear();
+    localStorage.setItem("products", JSON.stringify(products));
+}
+
 function deleteProduct(i)
 {
     products.splice(i,1);
+    saveAfterDeletingItem();
+    showData();
 }
