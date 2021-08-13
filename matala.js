@@ -10,6 +10,10 @@ var h3End = '</h2>';
 var imgStart = '<img src="';
 var imgEnd = '">';
 var br = '<br>';
+var buttonStart = '<button type="button" onclick="';
+var buttonEnd = '</button>';
+var buttonOnclickEnd = '">';
+
 var products = [];
 
 class Product {
@@ -62,10 +66,16 @@ function showData() {
         h2Start + products[i].price + h2End +
         h3Start + products[i].description + h3End +
         h3Start + products[i].barcode + h3End +                        
-        imgStart + products[i].p_image + imgEnd;
+        imgStart + products[i].p_image + imgEnd +
+        buttonStart + deleteProduct(i) + buttonOnclickEnd + "Delete" + buttonEnd;
 
         productsDiv += divProduct;
     }
 
     document.getElementById("container").innerHTML = productsDiv;
+}
+
+function deleteProduct(i)
+{
+    products.splice(i,1);
 }
